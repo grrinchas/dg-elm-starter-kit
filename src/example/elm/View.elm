@@ -21,8 +21,6 @@ homePage =
         ]
 
 
-
-
 usersPage : Responsive -> List User -> Html msg
 usersPage responsive users =
     case responsive of
@@ -35,6 +33,7 @@ mobile: List User -> Html msg
 mobile users =
     main_ []
         [ul [class "collection"] <| List.map userItem users]
+
 
 userItem: User -> Html msg
 userItem user =
@@ -71,6 +70,16 @@ notFoundPage = h1 [] [text "404 Not found"]
 errorPage : Error -> Html msg
 errorPage error = text <| toString error
 
+
+loading : Html msg
+loading =
+    div [ class "dg-loading" ]
+        [ div [ class "preloader-wrapper active" ] <|
+            List.map
+                loaderPart
+                [ "blue", "red", "yellow", "green" ]
+        ]
+
 loaderPart : String -> Html msg
 loaderPart color =
     div [ class ("spinner-layer spinner-" ++ color) ]
@@ -85,12 +94,3 @@ loaderPart color =
             ]
         ]
 
-
-loading : Html msg
-loading =
-    div [ class "dg-loading" ]
-        [ div [ class "preloader-wrapper active" ] <|
-            List.map
-                loaderPart
-                [ "blue", "red", "yellow", "green" ]
-        ]

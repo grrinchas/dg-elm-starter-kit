@@ -33,5 +33,4 @@ userDecoder =
         |> required "login" Decode.string
         |> required "id" Decode.int
         |> required "avatar_url" Decode.string
-        |> required "repos_url" Decode.string
 
