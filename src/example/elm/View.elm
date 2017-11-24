@@ -38,7 +38,7 @@ mobile users =
 userItem: User -> Html msg
 userItem user =
     li [class "collection-item avatar"]
-        [ img [class "dg-avatar circle", src user.avatar] []
+        [ img [class "circle", src user.avatar] []
         , span [class "title"] [text user.login]
         ]
 
@@ -52,8 +52,8 @@ tablet users =
 
 userCard : User -> Html msg
 userCard user =
-    div [class "col s6 m4 l3"]
-    [div [class "card small"]
+    div [class "col s6 m4 l2"]
+    [div [class "card dg-card"]
         [ div [class "card-image"]
          [img [src user.avatar, class "dg-avatar"] [] ]
         , div [class "card-content"]
