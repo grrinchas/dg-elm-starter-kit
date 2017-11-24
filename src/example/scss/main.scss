@@ -1,0 +1,18 @@
+$roboto-font-path: "~materialize-css/dist/fonts/roboto/";
+
+@import "loader";
+@import "../../../node_modules/materialize-css/sass/materialize";
+
+html, body, #app {
+    height: 100%;
+}
+
+body {
+    min-width: 600px;
+}
+
+.dg-avatar {
+    height: 200px;
+    width: 200px;
+}
+
