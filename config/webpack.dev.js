@@ -7,7 +7,6 @@ import common from './webpack.common';
 import AppConfig from '../app.confg';
 
 export default merge.smart(common, {
-    target: 'web',
     devtool: 'inline-source-map',
     entry: {
         main:
@@ -24,7 +23,7 @@ export default merge.smart(common, {
         path: AppConfig.paths.build,
     },
     plugins: [
-        // By plugins are needed for hot reloading
+        // Both plugins are needed for hot reloading
         new Webpack.HotModuleReplacementPlugin(),
         new Webpack.NoEmitOnErrorsPlugin(),
     ],

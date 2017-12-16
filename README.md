@@ -10,11 +10,9 @@ Based on the amazing work of [javascript-development-environment](https://github
 
 1. Development Server with hot reloading.
 2. Optimised bundling and minification for the production.
-3. Single Page Application Example with: 
-   1. Routing
-   2. HTTP requests
 
-## Install 
+
+## Install
 
 First let's install dependencies
 
@@ -41,7 +39,7 @@ git init
 yarn install
 ```
 
-* Install all `Elm` dependencies for Example application:
+* Install all `Elm` dependencies:
 ```bash
 elm-package install
 ```
@@ -74,34 +72,33 @@ Here are folders and files for development environment.
    -- devServer.js            # Start development server
    -- prodServer.js           # Start production server
 -- config/                  # Contains scripts for Webpack configuration
-   -- webpack.common.js       # Common configuration for production and development 
+   -- webpack.common.js       # Common configuration for production and development
    -- webpack.dev.js          # Development configuration
    -- webpack.prod.js         # Production configuration
-+- docs/                    # Output folder for production 
++- docs/                    # Output folder for production
 +- elm-stuff/               # Elm dependencies
 +- node_modules/            # JavaScript dependencies
 -- src/                     # Folder for source files
-   -- example/                # Example application
-   |  +- elm/                   # Folder for elm modules
-   |  +- images/                # Folder for static assets
-   |  +- scss/                  # Folder for style sheets
+   -- app/                    # Elm application
+   |  -- Main.elm               # Entry point of the application
    -- index.html              # Index file where SPA file be inserted
-   -- main.js                 # Entry file for the application
+   -- main.js                 # Entry point for the application
+   -- main.scss               # Entry point for the stylesheets
 -- .babelrc                 # Babel configuration file
 -- .editorconfig            # Configuration for the editors
 -- app.config.js            # Mostly contains some paths used by Webpack
--- elm-package.json          
+-- elm-package.json
 -- LICENSE
--- package.json             
--- README.md                
--- yarn.lock                
+-- package.json
+-- README.md
+-- yarn.lock
 ```
 
 ## Dependencies in `package.json`
 
 Here are all the dependencies for development and building. I strongly encourage to read official documentation for each of them.
 
-| **Dependency**                                                                             | **Use**                                                                         | 
+| **Dependency**                                                                             | **Use**                                                                         |
 | -------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
 | [babel-cli](https://babeljs.io/docs/usage/cli/)                                            | Babel Command line interface                                                    |
 | [babel-preset-env](https://www.npmjs.com/package/babel-preset-env)                         | Babel preset for running all the latest standardized JavaScript features        |
@@ -130,18 +127,11 @@ Here are all the dependencies for development and building. I strongly encourage
 
 ## Dependencies in `elm-package.json`
 
-Here are all the dependencies for Example application. 
+Here are all the dependencies for Example application.
 
-| **Dependency**                                                                                             | **Use**                                |           
+| **Dependency**                                                                                             | **Use**                                |
 | ---------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| [NoRedInk/elm-decode-pipeline](http://package.elm-lang.org/packages/NoRedInk/elm-decode-pipeline/latest/)  | Makes JSON decoding easier             |
 | [elm-lang/core](http://package.elm-lang.org/packages/elm-lang/core/latest)                                 | Core features for the Elm language     |
 | [elm-lang/html](http://package.elm-lang.org/packages/elm-lang/html/latest/)                                | Add html support                       |
-| [elm-lang/http](http://package.elm-lang.org/packages/elm-lang/http/latest)                                 | Add http support                       |
-| [elm-lang/navigation](http://package.elm-lang.org/packages/elm-lang/navigation/latest)                     | Add routing support                    |
-| [elm-lang/window](http://package.elm-lang.org/packages/elm-lang/window/latest/)                            | Add browser's window support           |
-| [evancz/markdown](http://package.elm-lang.org/packages/evancz/elm-markdown/latest)                         | Convert normal text to Markdown        |
-| [evancz/url-parser](http://package.elm-lang.org/packages/evancz/url-parser/latest/)                        | Url parser                             |
-| [krisajenkins/remotedata](http://package.elm-lang.org/packages/krisajenkins/remotedata/latest)             | Add state to http requests             |
 
 

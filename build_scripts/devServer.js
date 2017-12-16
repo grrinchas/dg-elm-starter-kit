@@ -2,7 +2,6 @@
  * Script for Elm application development which includes hot reloading.
  * Note that bundled webpack files fill be served from the memory.
  */
-
 import express from 'express';
 import path from 'path';
 import open from 'opn';
@@ -11,7 +10,6 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from '../config/webpack.dev';
-
 
 const port = 3000;
 const app = express();
