@@ -8,6 +8,7 @@ import AppConfig from '../app.confg';
 
 export default merge.smart(common, {
     devtool: 'inline-source-map',
+    mode: 'development',
     entry: {
         main:
             [
@@ -23,8 +24,10 @@ export default merge.smart(common, {
         path: AppConfig.paths.build,
     },
     plugins: [
-        // Both plugins are needed for hot reloading
+        // OccurrenceOrderPlugin is needed for webpack 1.x only
+        new Webpack.optimize.OccurrenceOrderPlugin(),
         new Webpack.HotModuleReplacementPlugin(),
-        new Webpack.NoEmitOnErrorsPlugin(),
+        // Use NoErrorsPlugin for webpack 1.x
+        new Webpack.NoEmitOnErrorsPlugin()
     ],
 });

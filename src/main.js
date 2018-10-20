@@ -1,8 +1,9 @@
 import Elm from './app/Main.elm';
 import './main.scss';
 
-const mountNode = document.getElementById('app');
-const app = Elm.Main.embed(mountNode);
+const app = Elm.Main.init({
+    node: document.getElementById('app')
+});
 
 if (module.hot) {
     module.hot.accept();
