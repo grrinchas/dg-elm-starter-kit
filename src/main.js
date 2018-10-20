@@ -1,4 +1,4 @@
-import Elm from './app/Main.elm';
+import {Elm}from './app/Main.elm';
 import './main.scss';
 
 const app = Elm.Main.init({

@@ -105,20 +105,15 @@ Here are all the dependencies for development and building. I strongly encourage
 | [chalk](https://www.npmjs.com/package/chalk)                                               | For Colorful log messages                                                       |
 | [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin)                 | Cleans folders before building                                                  |
 | [css-loader](https://www.npmjs.com/package/css-loader)                                     | Add CSS support to Webpack                                                      |
-| [elm-format](https://github.com/avh4/elm-format)                                           | Formats elm code                                                                |
 | [elm-webpack-loader](https://www.npmjs.com/package/elm-webpack-loader)                     | Add Elm support to Webpack                                                      |
 | [express](https://expressjs.com/)                                                          | Server for development and production builds                                    |
-| [extract-text-webpack-plugin](https://www.npmjs.com/package/extract-text-webpack-plugin)   | Extracts CSS into separate file for production build                            |
 | [file-loader](https://www.npmjs.com/package/file-loader)                                   | Adds file loading support to Webpack                                            |
 | [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin)                   | Inserts bundled files into `index.html`                                         |
-| [materialize-css](http://materializecss.com/)                                              | CSS framework based on Google Material Design.                                  |
 | [node-sass](https://www.npmjs.com/package/node-sass)                                       | For compiling SASS files                                                        |
 | [npm-run-all](https://www.npmjs.com/package/npm-run-all)                                   | Display results of multiple commands on single command line                     |
 | [opn](https://www.npmjs.com/package/opn)                                                   | Open app in default browser                                                     |
 | [sass-loader](https://www.npmjs.com/package/sass-loader)                                   | Add SASS support for Webpack                                                    |
 | [style-loader](https://www.npmjs.com/package/style-loader)                                 | Add Style support to Webpack                                                    |
-| [uglifyjs-webpack-plugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin)           | Plugin for minimising JavaScript files                                          |
-| [url-loader](https://www.npmjs.com/package/url-loader)                                     | Add url loading support to Webpack                                              |
 | [webpack](https://webpack.js.org/)                                                         | Bundler with plugin system and integrated development server                    |
 | [webpack-dev-middleware](https://www.npmjs.com/package/webpack-dev-middleware)             | Add middleware support to webpack                                               |
 | [webpack-hot-middleware](https://www.npmjs.com/package/webpack-hot-middleware)             | Add hot reloading to webpack                                                    |

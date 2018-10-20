@@ -9,6 +9,25 @@ import AppConfig from '../app.confg';
 export default merge.smart(common, {
     devtool: 'inline-source-map',
     mode: 'development',
+    module: {
+        rules: [
+            {
+                test: /\.elm$/,
+                use: [
+                    {loader: 'elm-hot-webpack-loader'},
+                    {
+                        loader: 'elm-webpack-loader',
+                        options: {
+                            cwd: AppConfig.paths.root,
+                            debug: true,
+                            forceWatch: true,
+                        }
+                    }
+
+                ]
+            },
+        ],
+    },
     entry: {
         main:
             [
