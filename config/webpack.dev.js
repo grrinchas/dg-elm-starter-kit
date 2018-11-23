@@ -5,6 +5,7 @@ import Webpack from 'webpack';
 import merge from 'webpack-merge';
 import common from './webpack.common';
 import AppConfig from '../app.confg';
+import BrowserSyncPlugin from 'browser-sync-webpack-plugin'
 
 export default merge.smart(common, {
     devtool: 'inline-source-map',
@@ -43,10 +44,12 @@ export default merge.smart(common, {
         path: AppConfig.paths.build,
     },
     plugins: [
-        // OccurrenceOrderPlugin is needed for webpack 1.x only
-        new Webpack.optimize.OccurrenceOrderPlugin(),
         new Webpack.HotModuleReplacementPlugin(),
-        // Use NoErrorsPlugin for webpack 1.x
-        new Webpack.NoEmitOnErrorsPlugin()
+        // browse to http://localhost:3000/ during development,
+        new BrowserSyncPlugin({
+            host: 'localhost',
+            port: 3000,
+            notify: false,
+        })
     ],
 });

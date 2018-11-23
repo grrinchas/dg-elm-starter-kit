@@ -20,8 +20,21 @@ app.use(webpackDevMiddleware(bundler, {
     publicPath: webpackConfig.output.publicPath,
     noInfo: true, // suppress all webpack log output
     stats: {
-        colors: true
-    }
+        colors: true,
+        hash: false,
+        version: false,
+        timings: false,
+        assets: false,
+        chunks: false,
+        modules: false,
+        reasons: false,
+        children: false,
+        source: false,
+        errors: true,
+        errorDetails: true,
+        warnings: false,
+        publicPath: false
+    },
 }));
 
 // Recompile files on any change
@@ -45,15 +58,4 @@ app.listen(port, (err) => {
         console.log(chalk.green(`Starting server on port ${port}`));
     }
 });
-/*
-    "css-loader": "^0.28.7",
-    "elm-format": "^0.6.1-alpha",
-    "express": "^4.15.4",
-    "extract-text-webpack-plugin": "^3.0.0",
-    "file-loader": "^1.1.5",
-    "materialize-css": "^0.100.2",
-    "npm-run-all": "^4.1.1",
-    "opn": "^5.1.0",
-    "uglifyjs-webpack-plugin": "^0.4.6",
-    "url-loader": "^0.6.2",
-    */
+
