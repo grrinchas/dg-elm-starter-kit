@@ -1,77 +1,51 @@
+module Main exposing (..)
+
 import Browser
-import Html exposing (..)
-import Html.Events exposing (..)
-import Random
-
-
--- MAIN
-
-
-main =
-  Browser.element
-    { init = init
-    , update = update
-    , subscriptions = subscriptions
-    , view = view
-    }
-
-
-
--- MODEL
-
-
-type alias Model =
-  { dieFace : Int
-  }
-
-
-init : () -> (Model, Cmd Msg)
-init _ =
-  ( Model 1
-  , Cmd.none
-  )
-
-
-
--- UPDATE
-
-
-type Msg
-  = Roll
-  | NewFace Int
-
-
-update : Msg -> Model -> (Model, Cmd Msg)
-update msg model =
-  case msg of
-    Roll ->
-      ( model
-      , Random.generate NewFace (Random.int 1 6)
-      )
-
-    NewFace newFace ->
-      ( Model newFace
-      , Cmd.none
-      )
-
-
-
--- SUBSCRIPTIONS
+import Browser.Navigation exposing (Key)
+import Config.Decoder exposing (decodeConfig)
+import Config.Model
+import Json.Decode exposing (Value)
+import Messages exposing (Msg(..))
+import Model exposing (Model)
+import Route.Messages exposing (RouteMsg(..))
+import Route.Model
+import Route.Update
+import Update
+import Url exposing (Url)
+import View
 
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-  Sub.none
+    Sub.batch
+        []
 
 
 
--- VIEW
+initial : Value -> Url -> Key -> ( Model, Cmd Msg )
+initial flags url key =
+    let
+
+        ( model, commands ) =
+                case Json.Decode.decodeValue decodeConfig flags of
+                    Ok config ->
+                            Model.initial { key = key , route = Route.Model.home } config
+                                |> Route.Update.parseRoute url
+                    Err err ->
+                        Debug.todo <| Debug.toString err
 
 
-view : Model -> Html Msg
-view model =
-  div []
-    [ h1 [] [ text (String.fromInt model.dieFace) ]
-    , button [ onClick Roll ] [ text "Roll" ]
-    ]
+    in ( model , Cmd.batch [ commands ] )
+
+
+main : Program Value Model Msg
+main =
+    Browser.application
+        { init = initial
+        , view = View.view
+        , update = Update.update
+        , subscriptions = subscriptions
+        , onUrlRequest = OnRoute << OnUrlRequest
+        , onUrlChange = OnRoute << OnUrlChange
+        }
 

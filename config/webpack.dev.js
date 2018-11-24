@@ -49,7 +49,6 @@ export default merge.smart(common, {
         new BrowserSyncPlugin({
             host: 'localhost',
             port: 3000,
-            notify: false,
         })
     ],
 });

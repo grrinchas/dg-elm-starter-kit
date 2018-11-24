@@ -9,8 +9,6 @@ import webpackConfig from '../config/webpack.prod';
 // Webpack bundler with production configuration
 const bundler = webpack(webpackConfig);
 
-process.env.NODE_ENV = 'production';
-
 console.log(chalk.blue('Generating minimized bundle for production. This may take a while...'));
 
 bundler.run((err, stats) => {

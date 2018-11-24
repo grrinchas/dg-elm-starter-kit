@@ -43,6 +43,6 @@ export default merge.smart(common, {
             // both options are optional
             filename: "[name].css",
             chunkFilename: "[id].css"
-        }),
+        })
     ],
 });
