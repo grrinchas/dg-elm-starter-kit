@@ -21,6 +21,7 @@ export default merge.smart(common, {
                         options: {
                             cwd: AppConfig.paths.root,
                             debug: true,
+                            runtimeOptions: '-A128M -H128M -n8m',
                             forceWatch: true,
                         }
                     }
