@@ -6,6 +6,7 @@ import Html exposing (Html, a, text)
 import Html.Attributes exposing (href)
 import Monocle.Lens exposing (Lens)
 import Route.Model exposing (Route)
+
 type alias Link =
     { config: Config
     , route : Route
@@ -35,8 +36,9 @@ linkName =
     Lens .name (\b a -> { a | name = b })
 
 
+
 simpleLink: Link -> Html msg
 simpleLink {route, name, class, config} =
-    a [Html.Attributes.class <| String.join "" ["as"]
+    a [Html.Attributes.class <| String.join "" class
     , href <| Route.Model.toString config route]
         [text name]
