@@ -20,6 +20,7 @@
         "chalk": "^2.4.1",
         "clean-webpack-plugin": "^0.1.19",
         "css-loader": "^1.0.0",
+        "dotenv": "^8.0.0",
         "elm-hot-webpack-loader": "^1.0.2",
         "elm-webpack-loader": "^5.0.0",
         "express": "^4.16.4",
@@ -36,6 +37,5 @@
         "webpack-merge": "^4.1.4"
     },
     "dependencies": {
-        "dotenv-webpack": "^1.5.7"
     }
 }

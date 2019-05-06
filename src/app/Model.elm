@@ -1,35 +1,36 @@
 module Model exposing
     ( Model
     , initial
-    , modelConfig
-    , modelNav
+    , lensModelConfig
     )
 
-import Config.Model exposing (Config)
+import Config
 import Monocle.Lens exposing (Lens)
-import Route.Model exposing (Navigation)
+
+
+
+-- MODELS
 
 
 type alias Model =
-    { nav : Navigation
-    , config : Config
-    , dieFace : Int
+    { config : Config.Config
     }
 
 
-initial : Navigation -> Config -> Model
-initial nav config =
-    { nav = nav
-    , config = config
-    , dieFace = 5
+
+-- CREATING
+
+
+initial : Config.Config -> Model
+initial config =
+    { config = config
     }
 
 
-modelConfig : Lens Model Config
-modelConfig =
+
+-- LENSES
+
+
+lensModelConfig : Lens Model Config.Config
+lensModelConfig =
     Lens .config (\b a -> { a | config = b })
-
-
-modelNav : Lens Model Navigation
-modelNav =
-    Lens .nav (\b a -> { a | nav = b })

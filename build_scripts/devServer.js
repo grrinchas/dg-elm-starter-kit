@@ -10,8 +10,10 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from '../config/webpack.dev';
+import e from 'dotenv';
 
-const port = 3000;
+const env = e.config().parsed;
+const port = env.PORT || 3000;
 const app = express();
 const bundler = webpack(webpackConfig);
 
@@ -50,12 +52,12 @@ app.get('*', (req, res) => {
 
 
 // Start the server
-app.listen(port, (err) => {
+app.listen(port, err => {
     if (err) {
         console.log(chalk.red(err));
     } else {
         open(`http://localhost:${port}`);
-        console.log(chalk.green(`Starting server on port ${port}`));
+        console.log(`Server is listening on port ${port}`);
     }
 });
 

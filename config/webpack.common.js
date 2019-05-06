@@ -3,7 +3,6 @@
  */
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import AppConfig from '../app.confg';
-import Dotenv from 'dotenv-webpack';
 
 export default {
     target: 'web',
@@ -31,7 +30,6 @@ export default {
     plugins: [
         // plugin for automatically injecting bundled js file into html
         new HtmlWebpackPlugin({template: 'src/index.html', inject: true,}),
-        new Dotenv(),
     ],
 }
 ;

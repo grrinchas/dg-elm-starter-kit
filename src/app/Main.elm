@@ -1,51 +1,76 @@
-module Main exposing (..)
+module Main exposing (commands, initial, main, subscriptions)
 
 import Browser
-import Browser.Navigation exposing (Key)
-import Config.Decoder exposing (decodeConfig)
-import Config.Model
-import Json.Decode exposing (Value)
+import Config
+import Html exposing (Html)
+import Json.Decode as D exposing (Value)
 import Messages exposing (Msg(..))
 import Model exposing (Model)
-import Route.Messages exposing (RouteMsg(..))
-import Route.Model
-import Route.Update
 import Update
-import Url exposing (Url)
 import View
 
 
-subscriptions : Model -> Sub Msg
+
+-- SUBSCRIPTIONS
+
+
+subscriptions : Model -> List (Sub Msg)
 subscriptions model =
-    Sub.batch
-        []
+    []
 
 
 
-initial : Value -> Url -> Key -> ( Model, Cmd Msg )
-initial flags url key =
+-- COMMANDS
+
+
+commands : Model -> List (Cmd Msg)
+commands model =
+    []
+
+
+
+-- INITIAL
+
+
+initial : Value -> ( Result String Model, Cmd Msg )
+initial flags =
     let
+        model =
+            case D.decodeValue Config.decode flags of
+                Ok config ->
+                    Ok (Model.initial config)
 
-        ( model, commands ) =
-                case Json.Decode.decodeValue decodeConfig flags of
-                    Ok config ->
-                            Model.initial { key = key , route = Route.Model.home } config
-                                |> Route.Update.parseRoute url
-                    Err err ->
-                        Debug.todo <| Debug.toString err
-
-
-    in ( model , Cmd.batch [ commands ] )
+                Err err ->
+                    Err (D.errorToString err)
+    in
+    ( model, Result.map commands model |> Result.withDefault [] |> Cmd.batch )
 
 
-main : Program Value Model Msg
+
+-- MAIN
+
+
+main : Program Value (Result String Model) Msg
 main =
-    Browser.application
+    Browser.element
         { init = initial
-        , view = View.view
-        , update = Update.update
-        , subscriptions = subscriptions
-        , onUrlRequest = OnRoute << OnUrlRequest
-        , onUrlChange = OnRoute << OnUrlChange
-        }
+        , view =
+            \res ->
+                case res of
+                    Ok model ->
+                        View.view model
 
+                    Err err ->
+                        Html.text err
+        , update =
+            \msg res ->
+                case res of
+                    Ok model ->
+                        Tuple.mapFirst Ok (Update.update msg model)
+
+                    Err _ ->
+                        ( res, Cmd.none )
+        , subscriptions =
+            \res ->
+                Result.map subscriptions res |> Result.withDefault [] |> Sub.batch
+        }
