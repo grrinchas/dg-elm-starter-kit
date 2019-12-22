@@ -7,6 +7,6 @@ import Model exposing (Model)
 
 view : Model -> Html Msg
 view ({ config } as model) =
-    h1 [] [ text "Welcome to Elm Starter Kit " ]
+    h1 [] [ text "Welcome to Elm Starter Kit" ]
 
 

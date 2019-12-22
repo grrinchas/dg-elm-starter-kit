@@ -10,6 +10,7 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from '../config/webpack.dev';
 import e from 'dotenv';
+import AppConfig from "../app.confg";
 
 const env = e.config().parsed;
 const port = env.PORT || 3000;
@@ -46,7 +47,7 @@ app.use(webpackHotMiddleware(bundler, {
 
 // This is single page application, therefore we route all the requests to the index.html
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../src/index.html'));
+    res.sendFile(AppConfig.paths.index);
 });
 
 
