@@ -1,5 +1,4 @@
 
- NOT MAINTAINED ! USE https://github.com/halfzebra/create-elm-app
 
 # Elm development environment
 
