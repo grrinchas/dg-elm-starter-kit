@@ -5,11 +5,8 @@
 import express from 'express';
 import chalk from 'chalk';
 import AppConfig from '../app.confg';
-import e from 'dotenv';
 
-
-const env = e.config().parsed;
-const port = env.PORT || 3000;
+const port = 3011;
 const app = express();
 
 app.use(express.static('docs'));
