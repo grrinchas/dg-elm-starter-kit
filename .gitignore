@@ -4,3 +4,4 @@ elm-stuff
 **/logs
 *.log
 yarn.lock
+docs
