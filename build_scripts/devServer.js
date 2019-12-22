@@ -4,7 +4,6 @@
  */
 import express from 'express';
 import path from 'path';
-import open from 'opn';
 import chalk from 'chalk';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
@@ -56,7 +55,6 @@ app.listen(port, err => {
     if (err) {
         console.log(chalk.red(err));
     } else {
-        open(`http://localhost:${port}`);
         console.log(`Server is listening on port ${port}`);
     }
 });

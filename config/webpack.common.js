@@ -3,6 +3,7 @@
  */
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import AppConfig from '../app.confg';
+import CopyPlugin from 'copy-webpack-plugin';
 
 export default {
     target: 'web',
@@ -14,22 +15,14 @@ export default {
                 test: /\.scss$/,
                 use: [{loader: "style-loader"}, {loader: "css-loader"}, {loader: "sass-loader"}]
             },
-            {
-                test: /\.(png|jpg)$/,
-                loader:
-                    'file-loader',
-                options:
-                    {
-                        name: 'images/[name].[ext]',
-                    }
-                ,
-            }
-            ,
         ],
     },
     plugins: [
         // plugin for automatically injecting bundled js file into html
-        new HtmlWebpackPlugin({template: 'src/index.html', inject: true,}),
+        new HtmlWebpackPlugin({template: AppConfig.paths.index, inject: true,}),
+        new CopyPlugin([
+            { from: "public" }
+        ]),
     ],
 }
 ;
