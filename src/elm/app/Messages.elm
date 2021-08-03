@@ -1,5 +1,5 @@
-module Messages exposing (Msg(..))
+module Messages exposing (Value(..))
 
 
-type Msg
-    = OnNop
+type Value
+    = NoOperation

@@ -2,8 +2,7 @@
     "type": "application",
     "source-directories": [
         "src/elm/app",
-        "src/elm/lib",
-        "src/elm/domain"
+        "src/elm/lib"
     ],
     "elm-version": "0.19.1",
     "dependencies": {
@@ -21,6 +20,7 @@
             "elm/url": "1.0.0",
             "elm-community/list-extra": "8.2.2",
             "elm-community/string-extra": "4.0.1",
+            "elm-explorations/test": "1.2.2",
             "justinmimbs/date": "3.2.0",
             "justinmimbs/time-extra": "1.1.0",
             "krisajenkins/remotedata": "5.0.0",

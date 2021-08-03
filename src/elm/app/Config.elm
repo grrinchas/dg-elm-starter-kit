@@ -1,20 +1,23 @@
-module Config exposing (..)
+module Config exposing
+    ( Value
+    , decode
+    )
+
+import Json.Decode as Decode
 
 
 
 -- MODELS
 
-import Json.Decode as D
-type alias Config =
+
+type alias Value =
     {}
 
 
 
 -- DECODERS
 
-decode: D.Decoder Config
+
+decode : Decode.Decoder Value
 decode =
-    D.succeed {}
-
-
-
+    Decode.succeed {}

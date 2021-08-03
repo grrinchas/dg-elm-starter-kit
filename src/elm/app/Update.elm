@@ -1,11 +1,14 @@
 module Update exposing (update)
 
-import Messages exposing (Msg(..))
-import Model exposing (Model)
+import Cmd
+import Command
+import Messages
+import Model
 
 
-update : Msg -> Model -> ( Model, Cmd Msg )
+update : Messages.Value -> Model.Value -> ( Model.Value, Cmd.Value )
 update message model =
     case message of
-        OnNop ->
-            ( model, Cmd.none )
+        Messages.NoOperation ->
+            model
+                |> Command.withoutCmd

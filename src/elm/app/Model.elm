@@ -1,19 +1,19 @@
 module Model exposing
-    ( Model
+    ( Value
     , initial
-    , lensModelConfig
+    , lensConfig
     )
 
 import Config
-import Monocle.Lens exposing (Lens)
+import Monocle.Lens as Lens
 
 
 
 -- MODELS
 
 
-type alias Model =
-    { config : Config.Config
+type alias Value =
+    { config : Config.Value
     }
 
 
@@ -21,7 +21,7 @@ type alias Model =
 -- CREATING
 
 
-initial : Config.Config -> Model
+initial : Config.Value -> Value
 initial config =
     { config = config
     }
@@ -31,6 +31,6 @@ initial config =
 -- LENSES
 
 
-lensModelConfig : Lens Model Config.Config
-lensModelConfig =
-    Lens .config (\b a -> { a | config = b })
+lensConfig : Lens.Lens Value Config.Value
+lensConfig =
+    Lens.Lens .config (\b a -> { a | config = b })

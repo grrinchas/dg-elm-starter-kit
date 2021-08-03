@@ -1,11 +1,19 @@
-module Main exposing (commands, initial, main, subscriptions)
+module Main exposing
+    ( commands
+    , initial
+    , main
+    , subscriptions
+    )
 
 import Browser
+import Cmd
+import Command
 import Config
-import Html exposing (Html)
-import Json.Decode as D exposing (Value)
-import Messages exposing (Msg(..))
-import Model exposing (Model)
+import Html
+import Json.Decode as Decode
+import Json.Encode as Encode
+import Messages
+import Model
 import Update
 import View
 
@@ -14,8 +22,8 @@ import View
 -- SUBSCRIPTIONS
 
 
-subscriptions : Model -> List (Sub Msg)
-subscriptions model =
+subscriptions : Model.Value -> List (Sub Messages.Value)
+subscriptions _ =
     []
 
 
@@ -23,37 +31,47 @@ subscriptions model =
 -- COMMANDS
 
 
-commands : Model -> List (Cmd Msg)
-commands model =
-    []
+commands : Model.Value -> List Cmd.Value
+commands _ =
+    [ Cmd.example
+    ]
 
 
 
 -- INITIAL
+-- INITIAL
 
 
-initial : Value -> ( Result String Model, Cmd Msg )
+flagsToModel : Decode.Value -> Result String Model.Value
+flagsToModel flags =
+    case Decode.decodeValue Config.decode flags of
+        Ok config ->
+            Ok (Model.initial config)
+
+        Err err ->
+            Err (Decode.errorToString err)
+
+
+initial : Encode.Value -> ( Result String Model.Value, Cmd.Value )
 initial flags =
-    let
-        model =
-            case D.decodeValue Config.decode flags of
-                Ok config ->
-                    Ok (Model.initial config)
-
-                Err err ->
-                    Err (D.errorToString err)
-    in
-    ( model, Result.map commands model |> Result.withDefault [] |> Cmd.batch )
+    ( flagsToModel flags
+    , Result.map commands (flagsToModel flags)
+        |> Result.withDefault []
+        |> Command.batch
+    )
 
 
 
 -- MAIN
 
 
-main : Program Value (Result String Model) Msg
+main : Program Encode.Value (Result String Model.Value) Messages.Value
 main =
     Browser.element
-        { init = initial
+        { init =
+            \flags ->
+                initial flags
+                    |> Tuple.mapSecond (Command.map Cmd.toCommands >> Command.list >> Cmd.batch)
         , view =
             \res ->
                 case res of
@@ -67,6 +85,7 @@ main =
                 case res of
                     Ok model ->
                         Tuple.mapFirst Ok (Update.update msg model)
+                            |> Tuple.mapSecond (Command.map Cmd.toCommands >> Command.list >> Cmd.batch)
 
                     Err _ ->
                         ( res, Cmd.none )
